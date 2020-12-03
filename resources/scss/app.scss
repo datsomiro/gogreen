@@ -1,0 +1,266 @@
+.page-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.main-header {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+}
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+  }
+
+.new-route-form {
+    display: flex;
+    
+    .route-details-container {
+        width: 50vw;
+
+        
+    }
+    .map-container {
+        width: 50vw;
+    }
+}
+
+.checkbox-group {
+    display: flex;
+}
+
+.route-detail-container {
+    display: flex;
+
+    .route-data-container {
+        width: 50vw;
+    
+        .route-description {
+            margin-top: 1rem;
+        }
+        
+        .route-data {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem;
+            width: 80%;
+            margin-top: 0.5rem;
+            background-color: #e6a751;
+
+            &__name {
+            
+            }
+    
+            &__item {
+                font-weight: bold;            
+            }
+
+            &__author {
+                font-size: 0.7em;
+
+            }
+        }
+    }
+    
+    .map-container {
+        width: 50vw;
+        height: 600px;
+    }
+
+}
+
+.route-images {
+    margin-top: 1rem;
+    
+    img {
+        width: 20px;
+        border-radius: 4px;
+        margin: 1em;
+
+    }
+   
+}
+
+.div-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.search-container {
+    display: flex;
+    height: 100vh;
+
+    .routes-list {
+        width: 50vw;
+    }
+
+    .map-container {
+        width: 50vw;
+    }
+}
+
+.popup {
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid green;
+    padding: .5em;
+    text-align: center;
+    
+    // width: 250px;
+    .closer {
+        text-align: right;
+        cursor: pointer;
+
+    }
+}
+
+.dogs-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-row {
+    display: flex;
+    align-items: center;
+}
+
+.dog-container {
+    display: flex;
+
+    .dog-image-box {
+
+        .dog-image {
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+
+        }
+
+    }
+
+    .dog-data {
+
+        &__name {
+            font-size: 1em;
+            font-weight: bold;
+
+        }
+
+        &__breed {
+            font-size: .8em;
+        }
+    }
+
+
+}
+
+.route-box {
+    border: 1px solid green;
+    margin: 1em;
+
+    .route-data {
+        display: flex;
+    }
+}
+
+.tabs {
+    display: flex;
+    margin: .5em 0em;
+
+    .tab {
+        font-size: 1.5em;
+        padding: .2em 0.5em;
+        border: 1px solid black;
+        cursor: pointer;
+
+        &:hover {
+            background-color: lightgray;
+        }
+    }
+}
+
+.routes-list-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+a {
+    text-decoration: none;
+    margin: 0 2em;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-logo {
+
+        .MuiBox-root-3 {
+            
+           img {
+                width:40px;
+            }
+
+        }
+    }
+    
+   .header-links {
+        display: flex;
+        align-items: center;
+    }
+
+    .user-box {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.route-addition-data {
+    display: flex;
+}
+
+.difficulty-visibility-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+
+}
+
+.single-review {
+    display: flex;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+
+    .review-content {
+        margin-left: 1.5rem;
+
+        &__main {
+            display: flex;
+
+            &__item {
+                margin-right: 3rem;
+            }
+
+        }
+
+
+
+
+    }
+}
