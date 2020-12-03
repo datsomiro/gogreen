@@ -1,4 +1,3 @@
-// import React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -16,46 +15,40 @@ const theme = createMuiTheme({
         }
     },
     typography: {
-        fontFamily: ['Quicksand',
+        fontFamily: ['Arizona',
             'Arial',
             'sans-serif',
         ].join(','),
         fontSize: 14,
-
         h1: {
-            fontFamily: ['Staatliches',
+            fontFamily: ['Arizona',
                 'Arial',
             ].join(','),
             fontSize: '6rem',
             fontWeight: '500',
         },
-
         h2: {
-            fontFamily: ['Staatliches',
+            fontFamily: ['Arizona',
                 'Arial',
             ].join(','),
             fontSize: '3rem',
             fontWeight: '500',
             color: '#10492f',
         },
-
         h3: {
-            fontFamily: ['Staatliches',
+            fontFamily: ['Arizona',
                 'Arial',
             ].join(','),
             fontSize: '1.5rem',
             fontWeight: '500',
-
         },
-
         h5: {
-            fontFamily: ['Staatliches',
+            fontFamily: ['Arizona',
                 'Arial',
             ].join(','),
             fontSize: '1rem',
             fontWeight: '400',
             color: '#10492f',
-
         },
 
     },

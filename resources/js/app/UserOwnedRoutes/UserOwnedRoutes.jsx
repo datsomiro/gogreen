@@ -2,15 +2,10 @@ import React, { useEffect, useState } from 'react';
 import RouteBox from '../RouteBox/RouteBox';
 import axios from 'axios';
 
-// import { UserContext } from '../App/App.jsx';
-
 const UserOwnedRoutes = (props) => {
 
     const [data, setData] = useState({ 'loading': true, 'routes': '' });
-    // const [loading, setLoading] = useState(true);
     const { userID } = props;
-
-    // const user = useContext(UserContext);
     const fetchUserRoutes = async (userID) => {
         const response = await axios.get('/api/routes?usr=' + userID);
 
@@ -19,7 +14,6 @@ const UserOwnedRoutes = (props) => {
                 'loading': false,
                 'routes': response.data.routes
             });
-            // setLoading(false);
         }
     }
 
@@ -36,9 +30,7 @@ const UserOwnedRoutes = (props) => {
             <div className="routes-list-cards">
                 {
                     data.routes.map((route, index) => (
-                        // <div> { route.name } </div>
                         <RouteBox key={index} route={route} />
-
                     ))
                 }
             </div>

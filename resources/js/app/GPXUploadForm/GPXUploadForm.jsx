@@ -55,19 +55,13 @@ const GPXUploadForm = () => {
         fd.append('routeName', routeName);
         fd.append('userID', user.id);
 
-        // send the data to API
         const response = await axios.post('/new-route', fd);
 
         if (response.status === 200) {
 
-            //fetch the just saved data from DB (it was parsed meantime by back-end)
             await fetchRoute(response.data.route_id);
-
-            //this will cause the next step of new route addition to render
             setGPXUploaded(true);
         }
-
-        // TO DO: handle back-end errors
 
     }
 
@@ -92,14 +86,13 @@ const GPXUploadForm = () => {
 
 
     if (GPXUploaded === false) {
-        // first step of route addition - show only input for gpx upload and route name
         return (
 
             <Container maxWidth="xs">
                 <Typography variant="h3"
                     className={classes.header}
                 >
-                    You are helping the others by creating new route. Thank you!
+                    Can you show other people how to reach the trash?
                 </Typography>
                 <form onSubmit={handleSubmit}>
                     <TextField
@@ -134,11 +127,7 @@ const GPXUploadForm = () => {
         )
     } else {
 
-        // GPX already uploaded? = show route info + map + fillable fields for adding more details
-        // deconstruct fetch data
         const { name, length, elevation, url, lat, lon } = routeData;
-
-        // prepare variables for DisplayMapWithRoute component
         const routeURL = '/storage/gpx/' + url,
             centerCoordinates = [lon, lat],
             zoom = 12;

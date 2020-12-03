@@ -27,41 +27,37 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function DogView(props) {
+export default function TrashView(props) {
 
     const classes = useStyles();
 
-    const { dogs } = props;
+    const { trashes } = props;
 
-    if (dogs !== null) {
-        console.log(dogs)
+    if (trashes !== null) {
+        console.log(trashes)
         return (
-            <div className="dogs-list">
+            <div className="trashes-list">
                 {
-                    dogs.dogs.map(dog => (
+                    trashes.trashes.map(trash => (
 
-                        <Card key={dog.id} variant="outlined" className={classes.root}>
+                        <Card key={trash.id} variant="outlined" className={classes.root}>
 
-                            <Avatar alt="Dog picture" className={classes.large} src={'/storage/users-images/' + dog.image} />
+                            <Avatar alt="Trash picture" className={classes.large} src={'/storage/users-images/' + trash.image} />
 
                             <CardContent>
                                 <Typography variant="h5" component="h2">
-                                    {dog.name}
+                                    {trash.location}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {dog.breed}
+                                    {trash.type}
                                 </Typography>
                             </CardContent>
                         </Card>
-
                     ))
                 }
-
             </div>
         )
     } else {
-        return ('No dogs')
+        return ('No trashess')
     }
-
-
 }

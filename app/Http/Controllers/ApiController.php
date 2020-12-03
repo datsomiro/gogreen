@@ -2,34 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dog;
+use App\Models\Trash;
 use App\Models\User;
 use Illuminate\Http\Request;
 use ImageHandler;
 
 class ApiController extends Controller
 {
-    public function dogsApi($id)
+    public function trashsApi($id)
     {
         $user_id = $id;
-        $dogs = Dog::where('user_id', $user_id)->get();
+        $trashes = Trash::where('user_id', $user_id)->get();
 
         return [
-            'dogs' => $dogs,
+            'trashes' => $trashes,
         ];
     }
 
-    public function dog($id, Request $request)
+    public function trash($id, Request $request)
     {
 
         $this->validate($request, [
-            'name' => 'string | max: 100',
-            'breed' => 'string | max: 100',
+            'location' => 'string | max: 100',
+            'type' => 'string | max: 100',
         ]);
 
-        $name = $request->input('name');
-        $breed = $request->input('breed');
-        $image = $request->file('dogImage');
+        $name = $request->input('location');
+        $breed = $request->input('type');
+        $image = $request->file('trashImage');
 
         $img = ImageHandler::make($image->getRealPath());
         $img->orientate();
@@ -44,11 +44,9 @@ class ApiController extends Controller
         // save picture to the disk
         $path = $image->store('public/users-images');
 
-        $allowed_extensions = ['jpg', 'png', 'jpeg', 'bmp', 'JPG', 'BMP', 'JPEG'];
+        $allowed_extensions = ['jpg', 'png', 'jpeg', 'bmp', 'JPG','JPEG'];
 
-        if ($request->hasFile('dogImage')) {
-
-            // validation for images (file extension)
+        if ($request->hasFile('trashImage')) {
 
             $original_extension = $image->getClientOriginalExtension();
 
@@ -58,20 +56,16 @@ class ApiController extends Controller
             }
         }
 
-        // saving of images
-        //$path = $image->store('public/users-images');
-
         $file_name = substr($path, 20, strlen($path) - 20);
-        // Croppa::render(Croppa::url($path, 800, null));
-        $dog = new Dog;
-        $dog->user_id = $id;
-        $dog->name = $name;
-        $dog->breed = $breed;
-        $dog->image = $file_name;
-        $dog->save();
-        $dog_id = $dog->id;
+        $trash = new Trash;
+        $trash->user_id = $id;
+        $trash->name = $location;
+        $trash->breed = $type;
+        $trash->image = $file_name;
+        $trash->save();
+        $trash_id = $trash->id;
 
-        return response(compact('name', 'breed', 'file_name', 'dog_id'), 200)
+        return response(compact('location', 'type', 'file_name', 'trash_id'), 200)
             ->header('Content-Type', 'application/json');
 
     }
@@ -93,9 +87,7 @@ class ApiController extends Controller
 
         $allowed_extensions = ['jpg', 'png', 'jpeg', 'bmp'];
 
-        if ($request->hasFile('dogImage')) {
-
-            // validation for images (file extension)
+        if ($request->hasFile('trashImage')) {
 
             $original_extension = $image->getClientOriginalExtension();
 

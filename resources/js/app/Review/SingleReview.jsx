@@ -31,11 +31,10 @@ export default function SingleReview(props) {
 
     if (review.user.photo !== null) {
         avatar = (
-            <Avatar alt="Profile picture" src={'/storage/users-images/' + review.user.photo} />
+            <Avatar alt="Profile picture" src={'/public/img/' + review.user.photo} />
         )
     } else {
         console.log(review.user.name.charAt(0))
-        // avatar place holder is user's initials
         const userNameFirstLetter = review.user.name.charAt(0);
         const userSurnameFirstLetter = review.user.surname.charAt(0);
         avatar = (

@@ -199,7 +199,6 @@ class RouteController extends Controller
 
             $res = strpos($line, '<trkpt lat="');
 
-            // stop the looping while we find first occurence of track point, save the lat and lon
             if ($res) {
                 $lat = substr($line, strpos($line, 'lat') + 5, 9);
                 $lon = substr($line, strpos($line, 'lon') + 5, 9);

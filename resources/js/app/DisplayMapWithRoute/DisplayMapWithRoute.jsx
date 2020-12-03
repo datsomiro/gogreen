@@ -28,7 +28,6 @@ const DisplayMapWithRoute = (props) => {
             source: new XYZ({
                 attributions: attributions,
                 url: 'https://api.maptiler.com/maps/outdoor/{z}/{x}/{y}.png?key=zqQIfCZhtqUzH8SuoWR1',
-                // maxZoom: 20,
             }),
         });
 
@@ -65,37 +64,23 @@ const DisplayMapWithRoute = (props) => {
     }, []);
 
     useEffect(() => {
-        // dont try to run this function when the mapObject is not set yet
         if (mapObject === null) { return }
-
-        // showing geotagged route images
         if (images) {
-            // remove images if they are displayed on map
-
-            // clone the array first
             const layers = [...mapObject.getLayers().getArray()]
-
-            // if there is more than two layers, it means that there are pictures and need to be removed
             if (layers.length > 2) {
-                // remove all layers except the first one which is the base map and second one which is GPX layer
+                
                 layers.shift();
                 layers.shift();
                 layers.forEach((layer) => mapObject.removeLayer(layer));
             }
 
-            // if images should be displayed, add them on map
             if (displayImagesOnMap) {
                 images.forEach((image) => {
-                    // first check if the image is geotagged
                     if (image.lat == '') { return }
 
                     const iconFeature = new Feature({
                         geometry: new Point(fromLonLat([image.lon, image.lat])),
-                        // here i can define properties of feature
-                        // name: route.name,
-                        // length: route.length,
-                        // elev: route.elevation_gain,
-                        // id: route.id,
+                
                     });
 
                     const iconStyle = new Style({
@@ -104,7 +89,7 @@ const DisplayMapWithRoute = (props) => {
                             anchorXUnits: 'pixels',
                             anchorYUnits: 'pixels',
                             scale: 0.1,
-                            src: '/storage/users-images/' + image.img_url,
+                            src: '/public/img/' + image.img_url,
                         }),
                     });
 
@@ -123,8 +108,6 @@ const DisplayMapWithRoute = (props) => {
                 });
             }
         }
-
-        //allow user to define POIs
         mapObject.on('click', (e) => {
             console.log(e.coordinate);
         });

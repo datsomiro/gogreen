@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function CreateDog(props) {
+export default function trashCreator(props) {
     const [name, setName] = useState('');
     const [breed, setBreed] = useState('');
-    const [dogImage, setDogImage] = useState([]);
+    const [trashImage, setTrashImage] = useState([]);
     const [redirect, setRedirect] = useState();
     const classes = useStyles();
 
@@ -47,55 +47,45 @@ export default function CreateDog(props) {
     }
 
     const handleFileChange = (event) => {
-        setDogImage(event.target.files[0]);
+        setTrashImage(event.target.files[0]);
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log('form submitting', { name, breed });
+        console.log('form submitting', { location, type });
 
-        let dog = new FormData();
-
-        // append one image
+        let trash = new FormData();
 
 
-        dog.append('dogImage', dogImage, dogImage.name);
+        trash.append('trashImage', trashImage, trashImage.location);
 
 
-        dog.append('name', name);
-        dog.append('breed', breed);
+        trash.append('location', location);
+        trash.append('type', type);
 
-        const response = await axios.post('/api/user/' + user_id + '/dog', dog);
+        const response = await axios.post('/api/user/' + user_id + '/trash', trash);
 
         if (response.status === 200) {
-
-            // we get the newly saved dog from response so we can directly set him to state and doesn't need to refetch
-            const { dogs } = props;
-            dogs.dogs.push({
-                'name': response.data.name,
-                'breed': response.data.breed,
+            const { trashes } = props;
+            trashes.trashes.push({
+                'location': response.data.location,
+                'breed': response.data.type,
                 'image': response.data.file_name,
-                'id': response.data.dog_id
+                'id': response.data.trash_id
             });
-            // set state in parent component which when false hide the form for dog addition
-            props.setAddNewDog(false);
+            props.setAddNewTrash(false);
 
-            props.setDogs({ ...dogs });
+            props.setTrashes({ ...trashes });
 
         }
-
-
-
     }
-
-
     return (
         <Container maxWidth="xs">
             <Typography variant="h3"
                 className={classes.header}
             >
-                Create new dog.
+                Create new trash.
                 </Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
@@ -104,7 +94,7 @@ export default function CreateDog(props) {
                     required
                     fullWidth
                     id="name"
-                    label="Dog name"
+                    label="trash name"
                     name="name"
                     autoComplete="name"
                     autoFocus
@@ -115,16 +105,16 @@ export default function CreateDog(props) {
                     margin="normal"
                     required
                     fullWidth
-                    id="breed"
-                    label="Breed"
-                    name="breed"
-                    autoComplete="breed"
+                    id="type"
+                    label="type"
+                    name="type"
+                    autoComplete="type"
                     autoFocus
                     onChange={handleBreedChange}
                 />
                 <div className="formElement">
-                    <label htmlFor="dog-pic">Choose dog picture</label>
-                    <input type="file" name="dog-pic" onChange={handleFileChange} />
+                    <label htmlFor="trash-pic">Choose trash picture</label>
+                    <input type="file" name="trash-pic" onChange={handleFileChange} />
                 </div>
                 <Button
                     type="submit"
@@ -138,27 +128,6 @@ export default function CreateDog(props) {
                   </Button>
             </form>
         </Container>
-        /*             <>
-                        <form onSubmit={handleSubmit}>
-                            <div className="formElement">
-                                <label htmlFor="name">
-                                    Name
-                                    <input type="text" name="name" value={name} onChange={ handleNameChange } />
-                                </label>
-                            </div>
-                            <div className="formElement">
-                                <label htmlFor="breed">
-                                    Breed
-                                    <input type="text" name="breed" value={breed} onChange={ handleBreedChange } />
-                                </label>
-                            </div>
-                            <div className="formElement">
-                                        <label htmlFor="dog-pic">Choose dog picture</label>
-                                        <input type="file" name="dog-pic" onChange={ handleFileChange } />
-                            </div>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </> */
     )
 
 }

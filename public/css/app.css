@@ -102,7 +102,7 @@
   cursor: pointer;
 }
 
-.dogs-list {
+.trashes-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -114,19 +114,19 @@
   align-items: center;
 }
 
-.dog-container {
+.trash-container {
   display: flex;
 }
-.dog-container .dog-image-box .dog-image {
+.trash-container .trash-image-box .trash-image {
   border-radius: 50%;
   width: 90px;
   height: 90px;
 }
-.dog-container .dog-data__name {
+.trash-container .trash-data__name {
   font-size: 1em;
   font-weight: bold;
 }
-.dog-container .dog-data__breed {
+.trash-container .trash-data__breed {
   font-size: 0.8em;
 }
 

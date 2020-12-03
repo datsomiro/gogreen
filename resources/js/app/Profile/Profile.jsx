@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import CreateDog from '../Dog/CreateDog.jsx';
-import DogView from '../Dog/DogView.jsx';
+import CreateTrash from '../Trash/CreateTrash.jsx';
+import TrashView from '../Trash/TrashView.jsx';
 import ProfilePicture from '../Register/ProfilePicture.jsx';
 import UserOwnedRoutes from '../UserOwnedRoutes/UserOwnedRoutes';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
-    dogFrom: {
+    trashFrom: {
         display: 'flex',
         flexDirection: 'column',
     },
@@ -29,21 +29,21 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile(props) {
 
     const user = useContext(UserContext);
-    const [addNewDog, setAddNewDog] = useState(false);
+    const [addNewTrash, setAddNewTrash] = useState(false);
     const [profilePicture, setProfilePicture] = useState(null);
-    const [dogs, setDogs] = useState(null);
+    const [trashes, setTrashes] = useState(null);
     const [activeTab, setActiveTab] = useState();
     const classes = useStyles();
 
     const loadData = async () => {
         if (user) {
             const id = user.id;
-            const url = `/api/dog/${id}`;
+            const url = `/api/trash/${id}`;
             const response = await fetch(url);
             const data = await response.json();
-            setDogs(data);
+            setTrashes(data);
             setProfilePicture(user.photo);
-            setActiveTab('dogs');
+            setActiveTab('trashes');
         }
     }
 
@@ -59,26 +59,24 @@ export default function Profile(props) {
         setActiveTab(e.target.innerHTML);
     }
 
-    // conditional redenring for tabs
     let tabElm;
-    let dogInput;
-    console.log(dogs);
-    if (activeTab == 'Your dogs') {
+    let trasInput;
+    console.log(trashes);
+    if (activeTab == 'the Trash') {
 
-        if (addNewDog) {
-            dogInput = (
-                <div className="create-dog-form">
-                    <CreateDog setDogs={setDogs} dogs={dogs} setAddNewDog={setAddNewDog} />
+        if (addNewTrash) {
+            trashInput = (
+                <div className="create-trash-form">
+                    <CreateTrash setTrashes={setTrashes} trashes={trashes} setAddNewTrash={setAddNewTrash} />
                 </div>
             )
         }
         tabElm = (
-            <div className={classes.dogForm}>
-                {/* show all dogs here */}
-                <Button variant="contained" color="primary" onClick={() => { setAddNewDog(!addNewDog) }}>
-                    Add new best friend
+            <div className={classes.trashForm}>
+                <Button variant="contained" color="primary" onClick={() => { setAddNewTrash(!addNewTrash) }}>
+                    Add new trash here
                 </Button>
-                <DogView dogs={dogs} />
+                <trashView trashes={trashes} />
             </div>
         )
     } else if (activeTab == 'Your routes') {
@@ -104,12 +102,11 @@ export default function Profile(props) {
                 <div className="tabs">
                     <ButtonGroup color="secondary" variant="text" aria-label="outlined primary button group">
                         <Button onClick={handleTab}>Your routes</Button>
-                        <Button onClick={handleTab}>Your dogs</Button>
-                        {/* <Button onClick={ handleTab }>Bucket list</Button> */}
+                        <Button onClick={handleTab}>Your trashes</Button>
                     </ButtonGroup>
                 </div>
                 { tabElm}
-                { dogInput}
+                { trashInput}
 
 
             </div>

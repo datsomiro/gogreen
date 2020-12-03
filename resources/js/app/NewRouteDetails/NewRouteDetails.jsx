@@ -13,7 +13,7 @@ import Select from '@material-ui/core/Select';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
-    // width of the difficulty slider
+
     root: {
         width: 300,
     },
@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-// needed for difficulty slider
 function valuetext(value) {
     return value;
 }
@@ -50,12 +49,9 @@ const NewRouteDetails = (props) => {
         visibility: 1,
         activities: []
     });
-
-    // get all available activities (routes are suitable for different activities) from API
     const fetchActivities = async () => {
         const response = await axios.get('/api/activities');
 
-        // add property checked:false to array of activities objects
         response.data.activities.forEach(activity => {
             activity.checked = false;
         });
@@ -63,7 +59,6 @@ const NewRouteDetails = (props) => {
         setActivities(response.data.activities);
     }
 
-    // fetch activities only once
     useEffect(() => {
         fetchActivities();
     }, []);
@@ -78,7 +73,6 @@ const NewRouteDetails = (props) => {
         setRouteImages(e.target.files);
     }
 
-    // set the route difficutly to state while preserving the others values
     const handleDifficultyChange = (event, newValue) => {
         console.log(newValue);
         setRouteDetails(prevValues => {
@@ -108,8 +102,6 @@ const NewRouteDetails = (props) => {
 
         e.preventDefault();
 
-        // add ids (those ids are activity id from db) of checked activities to to routeDetails
-        // it also prevents to add one id multiple time, if there is validation error and the form is submitted more time
         activities.forEach(activity => {
             if (activity.checked && routeDetails.activities.includes(activity.id) == false) {
 
@@ -117,10 +109,8 @@ const NewRouteDetails = (props) => {
             }
         })
 
-        // prepera data to be sent
         let fd = new FormData();
 
-        // append all images
         for (let i = 0; i < routeImages.length; i++) {
             const routeImagesName = 'routeImages[' + i + ']';
             fd.append(routeImagesName, routeImages[i], routeImages[i].name);
@@ -214,7 +204,6 @@ const NewRouteDetails = (props) => {
                         <Typography gutterBottom>
                             Choose route pictures
                     </Typography>
-                        {/* <label htmlFor="route_images">Choose route picture</label> */}
                         <input type="file" name="route_images" onChange={handleFileChange} multiple />
                     </div>
 
@@ -223,11 +212,7 @@ const NewRouteDetails = (props) => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={handleSubmit}
-                    >
-                        Save the route
-                  </Button>
-
+                        onClick={handleSubmit}>Save the route</Button>
                 </form>
             </div>
         )

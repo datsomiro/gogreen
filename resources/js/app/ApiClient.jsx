@@ -21,18 +21,14 @@ export default class ApiClient {
         options = options === undefined ? {} : options;
 
         options.headers = ApiClient.requestHeaders(options);
-
         const default_options = {
             method: 'get'
         }
-
         const response = await fetch(url, {
             ...default_options,
             ...options
         })
-
-        return response;
-        
+        return response;       
     }
 
     static async post(url, options) {
@@ -43,7 +39,6 @@ export default class ApiClient {
 
         options.headers = ApiClient.requestHeaders(options);
 
-        // add the XSRF token from cookie
         options.headers['X-XSRF-TOKEN'] = ApiClient.getCookie('XSRF-TOKEN');
 
         const default_options = {
@@ -59,22 +54,13 @@ export default class ApiClient {
     }
 
     static getCookie(name) {
-        // Split cookie string and get all individual name=value pairs in an array
         var cookieArr = document.cookie.split(";");
-
-        // Loop through the array elements
         for (var i = 0; i < cookieArr.length; i++) {
             var cookiePair = cookieArr[i].split("=");
-
-            /* Removing whitespace at the beginning of the cookie name
-            and compare it with the given string */
             if (name == cookiePair[0].trim()) {
-                // Decode the cookie value and return
                 return decodeURIComponent(cookiePair[1]);
             }
         }
-
-        // Return null if not found
         return null;
     }
 }

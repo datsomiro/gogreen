@@ -58,15 +58,12 @@ export default function ProfilePicture(props) {
             setAddPicture(false);
         }
     };
-
-    // determine if we have profile picture or if we need to show avatar place holder
     let avatar;
     if (userPhoto !== null) {
         avatar = (
             <Avatar alt="Profile picture" className={classes.large} src={'/storage/users-images/' + userPhoto} />
         )
     } else {
-        // avatar place holder is user's initials
         const userNameFirstLetter = user.name.charAt(0);
         const userSurnameFirstLetter = user.surname.charAt(0);
         avatar = (
@@ -79,7 +76,6 @@ export default function ProfilePicture(props) {
     } else {
         return (
             <>
-                {/* return avatar conditionally rendered above */}
                 { avatar}
 
                 <Button color="primary" onClick={() => { setAddPicture(!addPicture) }}>

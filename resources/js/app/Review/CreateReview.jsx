@@ -68,15 +68,10 @@ export default function CreateReview(props) {
                     'photo': user.photo
                 }
             });
-            // close the add review form
             props.setAddReview(false);
-
-            // send the new review so it can display directly without refetching
             props.setReviews([...newReviews]);
         }
     }
-
-
 
     return (
         <>

@@ -6,14 +6,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dog extends Model
+class Trash extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'name',
-        'breed',
+        'location',
+        'type',
     ];
 
     public function user()

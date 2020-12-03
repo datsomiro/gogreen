@@ -125,7 +125,7 @@
     }
 }
 
-.dogs-list {
+.trashes-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -137,12 +137,12 @@
     align-items: center;
 }
 
-.dog-container {
+.trash-container {
     display: flex;
 
-    .dog-image-box {
+    .trash-image-box {
 
-        .dog-image {
+        .trash-image {
             border-radius: 50%;
             width: 90px;
             height: 90px;
@@ -151,7 +151,7 @@
 
     }
 
-    .dog-data {
+    .trash-data {
 
         &__name {
             font-size: 1em;
