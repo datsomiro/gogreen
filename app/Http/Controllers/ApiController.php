@@ -60,7 +60,7 @@ class ApiController extends Controller
         $trash = new Trash;
         $trash->user_id = $id;
         $trash->name = $location;
-        $trash->breed = $type;
+        $trash->type = $type;
         $trash->image = $file_name;
         $trash->save();
         $trash_id = $trash->id;

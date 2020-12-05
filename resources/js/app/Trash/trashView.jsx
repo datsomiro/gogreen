@@ -4,9 +4,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import { Autorenew } from '@material-ui/icons';
-// import ReactDOM from 'react-dom';
-// import {UserContext} from '../App/App.jsx';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,6 +55,6 @@ export default function TrashView(props) {
             </div>
         )
     } else {
-        return ('No trashess')
+        return ('No trashes')
     }
 }

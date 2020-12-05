@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Dog;
+use App\Models\Review;
+use App\Models\Route;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,9 +19,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'username',
         'name',
+        'surname',
         'email',
         'password',
+        'photo',
     ];
 
     /**
@@ -41,7 +46,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-     public function trash()
+    public function dogs()
     {
         return $this->hasMany(Trash::class);
     }
@@ -56,4 +61,5 @@ class User extends Authenticatable
         return $this->hasMany(Route::class);
     }
 }
+
 

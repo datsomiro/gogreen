@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import CreateTrash from '../Trash/CreateTrash.jsx';
+import CreateTrash from '../Trash/trashCreator.jsx';
 import TrashView from '../Trash/TrashView.jsx';
 import ProfilePicture from '../Register/ProfilePicture.jsx';
 import UserOwnedRoutes from '../UserOwnedRoutes/UserOwnedRoutes';
@@ -102,13 +102,9 @@ export default function Profile(props) {
                 <div className="tabs">
                     <ButtonGroup color="secondary" variant="text" aria-label="outlined primary button group">
                         <Button onClick={handleTab}>Your routes</Button>
-                        <Button onClick={handleTab}>Your trashes</Button>
                     </ButtonGroup>
                 </div>
                 { tabElm}
-                { trashInput}
-
-
             </div>
         )
     }

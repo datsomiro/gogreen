@@ -21,14 +21,17 @@ export default class ApiClient {
         options = options === undefined ? {} : options;
 
         options.headers = ApiClient.requestHeaders(options);
+
         const default_options = {
             method: 'get'
         }
+
         const response = await fetch(url, {
             ...default_options,
             ...options
         })
-        return response;       
+
+        return response;
     }
 
     static async post(url, options) {
@@ -55,9 +58,12 @@ export default class ApiClient {
 
     static getCookie(name) {
         var cookieArr = document.cookie.split(";");
+
         for (var i = 0; i < cookieArr.length; i++) {
             var cookiePair = cookieArr[i].split("=");
+
             if (name == cookiePair[0].trim()) {
+ 
                 return decodeURIComponent(cookiePair[1]);
             }
         }

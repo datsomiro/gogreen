@@ -66,11 +66,10 @@ export default function Login({ fetchUser }) {
         const response = await axios.post('/login', values);
 
         if (response.status === 200) {
-            // we are logged in!
-            fetchUser(); // tell App to fetch the user again
+
+            fetchUser(); 
             setRedirect('/profile');
         } else {
-            // display an error message?
         }
     }
 

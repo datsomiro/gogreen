@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%', 
         marginTop: theme.spacing(1),
     },
     submit: {
@@ -67,7 +67,6 @@ export default function Register(props) {
         const response = await axios.post('/register', values);
 
         if (response.status === 201) {
-            // if the registration was successful, fetch the user in the topmost component
             props.fetchUser();
             setRedirect('/profile');
         }

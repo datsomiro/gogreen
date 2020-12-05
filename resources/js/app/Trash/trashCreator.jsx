@@ -70,7 +70,7 @@ export default function trashCreator(props) {
             const { trashes } = props;
             trashes.trashes.push({
                 'location': response.data.location,
-                'breed': response.data.type,
+                'type': response.data.type,
                 'image': response.data.file_name,
                 'id': response.data.trash_id
             });

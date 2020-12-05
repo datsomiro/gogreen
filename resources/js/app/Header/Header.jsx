@@ -91,9 +91,7 @@ const Header = (props) => {
                         Find a route
                 </Button>
                 </div>
-                {/* display login/user section depending on user login status */}
                 {user ? (
-                    // <div>
                     <div className="user-box">
                         <IconButton
                             aria-label="account of current user"
@@ -139,7 +137,6 @@ const Header = (props) => {
                         </Button>
                     )}
 
-                {/* you need to redirect as a last step to allow the header component to render first */}
                 {redirect && (<Redirect to={redirect} />)}
 
             </div>

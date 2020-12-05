@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { UserContext } from '../App/App.jsx';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 300,
@@ -27,15 +28,11 @@ const useStyles = makeStyles((theme) => ({
 const RouteDetail = () => {
     const classes = useStyles();
     const user = useContext(UserContext);
-
-    // get the id from url to fetch specific route and its relations
     const { id } = useParams();
-
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [displayImagesOnMap, setDisplayImagesOnMap] = useState(false);
     const [reviews, setReviews] = useState(null);
-    // const [createReviewElm, setCreateReviewElm] = useState();
     const [addReview, setAddReview] = useState(false);
 
     const fetchData = async () => {
@@ -78,17 +75,17 @@ const RouteDetail = () => {
                                 <div className="route-data">
                                     <Typography variant="h3">
                                         Total elevation: {data.route.elevation_gain} m
-                            </Typography>
+                                    </Typography>
                                     <Typography variant="h3">
                                         Distance: {data.route.length / 1000} km
-                            </Typography>
+                                    </Typography>
                                     <Typography variant="h3">
                                         Difficulty: {data.route.difficulty} / 5
-                            </Typography>
+                                    </Typography>
                                 </div>
-                                <Typography>
-                                    (author: {data.route.user.name} {data.route.user.surname})
-                        </Typography>
+                                    <Typography>
+                                        (author: {data.route.user.name} {data.route.user.surname})
+                                    </Typography>
 
                                 <div className="route-images">
                                     {
@@ -110,30 +107,17 @@ const RouteDetail = () => {
                                 <div className="route-description">
                                     <Typography variant="h3" className={classes.header} >
                                         Route description:
-                            </Typography>
+                                    </Typography>
                                     <Typography>
                                         {data.route.description}
                                     </Typography>
                                 </div>
-                                <Divider className={classes.divider} />
-                                <div className="suitable-for">
-                                    <Typography variant="h3" className={classes.header} >
-                                        This route is suitable for those activities:
-                            </Typography>
-                                    {
-                                        data.route.activities.map((activity, index) => (
-                                            <Typography key={index}>
-                                                { activity.name}
-                                            </Typography>
-                                        ))
-                                    }
-                                </div>
-                                <Divider className={classes.divider} />
-                                <Typography variant="h3"
-                                    className={classes.header}
-                                >
+                                    <Divider className={classes.divider} />
+                        
+                                    <Typography variant="h3"
+                                    className={classes.header}>
                                     Reviews:
-                        </Typography>
+                                    </Typography>
 
                                 {user &&
                                     <Button
@@ -146,10 +130,7 @@ const RouteDetail = () => {
                                     </Button>
 
                                 }
-                                {/* form for adding review (element constructed above return contionaly) */}
                                 {reviewForm}
-
-                                {/* show all reviews */}
                                 <ReviewView reviews={reviews} />
 
                             </div>

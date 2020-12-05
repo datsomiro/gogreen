@@ -27,7 +27,7 @@ const DisplayMapWithRoute = (props) => {
         const raster = new TileLayer({
             source: new XYZ({
                 attributions: attributions,
-                url: 'https://api.maptiler.com/maps/outdoor/{z}/{x}/{y}.png?key=zqQIfCZhtqUzH8SuoWR1',
+                url: 'https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=111LcyyySEtMLGVYGWD5',
             }),
         });
 
